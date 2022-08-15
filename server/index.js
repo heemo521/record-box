@@ -1,15 +1,12 @@
 const express = require("express");
 const app = express();
-// const path = require("path");
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { identifyAlbum } = require("./gva");
-app.use(cors());
-//npm install body-parser --save
-app.use(bodyParser.json());
 
-// const router = express.Router();
-// const vision = require("@google-cloud/vision");
+app.use(cors());
+app.use(bodyParser.json());
 
 app.use(express.json());
 
@@ -27,15 +24,15 @@ app.get("/api/album/gva/:img_id", (req, res) => {
 
 app.post("/api/album/gva", (req, res) => {
   const data = req.body;
-
+  console.log(data);
   identifyAlbum(data.url).then((result) => {
     const bestGuess = result[0].label;
 
-    const regex = /(album|cover)/g;
+    const regex = /(album|cover|vinyl|cd|lp)/g;
     const incorrectImage = !regex.test(bestGuess);
 
     if (incorrectImage) {
-      res.sendStatus(404);
+      return res.status(404).send("Not an album");
     }
 
     const searchWord = bestGuess.replace(regex, "");
@@ -44,36 +41,6 @@ app.post("/api/album/gva", (req, res) => {
     res.send(searchWord);
   });
 });
-
-// app.post("/api/image", (req, res) => {
-//   const image = req.body.image;
-//   const client = new vision.ImageAnnotatorClient();
-//   const [result] = client.labelDetection(image);
-//   const labels = result.labelAnnotations;
-//   console.log("Labels:");
-//   labels.forEach((label) => console.log(label.description));
-//   res.send(labels);
-// });
-
-// app.get("/api/upload", (req, res) => {
-// const image = req.body.image;
-// const client = new vision.ImageAnnotatorClient();
-// const [result] = client.labelDetection(image);
-// const labels = result.labelAnnotations;
-// console.log("Labels:");
-// labels.forEach((label) => console.log(label.description));
-// res.send(labels);
-// });
-
-// app.post("/api/search", (req, res) => {
-//   const image = req.body.image;
-//   const client = new vision.ImageAnnotatorClient();
-//   const [result] = client.labelDetection(image);
-//   const labels = result.labelAnnotations;
-//   console.log("Labels:");
-//   labels.forEach((label) => console.log(label.description));
-//   res.send(labels);
-// });
 
 const PORT = process.env.PORT || 5000;
 
