@@ -8,6 +8,7 @@ import ImageDisplay from "./ImageDisplay";
 function UploadImage() {
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
+  const [albumData, setAlbumData] = useState(null);
 
   const uploadImage = () => {
     const data = new FormData();
@@ -26,11 +27,6 @@ function UploadImage() {
       .catch((err) => console.log(err));
   };
 
-  const getImageData = (img_id) =>
-    ax(`http://localhost:5000/api/album/gva/${img_id}`).catch((err) =>
-      console.log(err)
-    );
-
   const postImage = () => {
     const regex = /\/([a-zA-Z0-9]*)\.(jpg|png|gif)/;
     const img_id = url.match(regex)[1];
@@ -41,7 +37,7 @@ function UploadImage() {
     })
       .then((res) => {
         console.log(res.data);
-        getImageData(img_id);
+        setAlbumData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -84,7 +80,8 @@ function UploadImage() {
         </Grid>
         <div>
           <h1>Uploaded image will be displayed here</h1>
-          {url && <iImageDisplay url={url} />}
+          <p>Hello: {albumData}</p>
+          {url && <ImageDisplay url={url} />}
         </div>
       </Grid>
     </div>

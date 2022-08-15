@@ -13,18 +13,31 @@ app.use(bodyParser.json());
 
 app.use(express.json());
 
+app.post("/api/records/:userId", (req, res) => {
+  const body = req.body;
+  const params = req.params;
+  console.log(body);
+  console.log(params);
+  res.send("ok");
+});
+
 app.get("/api/album/gva/:img_id", (req, res) => {
   res.send("test");
 });
 
 app.post("/api/album/gva", (req, res) => {
   const data = req.body;
-  //regex to replace album and cover with empty string
+
   identifyAlbum(data.url).then((result) => {
     const bestGuess = result[0].label;
 
-    // regex for bestGuess to get album and cover from bestGuess
     const regex = /(album|cover)/g;
+    const incorrectImage = !regex.test(bestGuess);
+
+    if (incorrectImage) {
+      res.sendStatus(404);
+    }
+
     const searchWord = bestGuess.replace(regex, "");
     console.log(searchWord);
 
