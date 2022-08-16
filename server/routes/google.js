@@ -1,10 +1,10 @@
-const identifyAlbum = require("../utils/gva");
+const { identifyAlbum } = require("../utils/gva");
 const googleRouter = require("express").Router();
 
-googleRouter.use((req, res, next) => {
-  console.log("Google router");
-  next();
-});
+// googleRouter.use((req, res, next) => {
+//   console.log("Google router");
+//   next();
+// });
 
 googleRouter.post("/records/:userId", (req, res) => {
   const body = req.body;
@@ -20,7 +20,7 @@ googleRouter.get("/album/gva/:img_id", (req, res) => {
 
 googleRouter.post("/album/gva", (req, res) => {
   const data = req.body;
-
+  console.log(data);
   identifyAlbum(data.url).then((result) => {
     const bestGuess = result[0].label;
 

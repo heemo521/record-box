@@ -2,41 +2,33 @@ import React, { useState, useEffect } from "react";
 import RecordCollection from "./features/RecordCollection";
 import UploadImage from "./features/UploadImage";
 import Login from "./features/Login";
-import RecordPlayer from "./features/RecordPlayer";
+import SearchSpotify from "./features/SearchSpotify";
+import MusicPlayer from "./features/MusicPlayer";
 
-const MainComponent = ({ records, token }) => {
+const code = new URLSearchParams(window.location.search).get("code");
+
+const MainComponent = ({ code }) => {
+  const [records, setRecords] = useState([]);
+  const [searchedRecord, setSearchedRecord] = useState({});
+  const [albumName, setAlbumName] = useState("");
   return (
     <>
-      <UploadImage />
       <RecordCollection records={records} />
-      <RecordPlayer token={token} />
+      <UploadImage setAlbumName={setAlbumName} />
+      <SearchSpotify
+        albumName={albumName}
+        code={code}
+        setSearchedRecord={setSearchedRecord}
+      />
+      <MusicPlayer />
     </>
   );
 };
 
 function App() {
-  const [records, setRecords] = useState([]);
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    if (token) return;
-
-    async function getToken() {
-      const response = await fetch("http://127.0.0.1:8000/auth/token");
-      const json = await response.json();
-      console.log(json.access_token);
-      setToken(json.access_token);
-    }
-    getToken();
-  }, []);
-
   return (
     <div className="App">
-      {!token ? (
-        <Login />
-      ) : (
-        <MainComponent records={records} setRecords={setRecords} />
-      )}
+      {code ? <MainComponent code={code} /> : <Login />}
     </div>
   );
 }
