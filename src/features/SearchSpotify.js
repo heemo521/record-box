@@ -7,13 +7,11 @@ const spotifyApi = new SpotifyWebApi({
   clientId: "e5c7befa7a5b4f209ae1986b51868db3",
 });
 
-function SearchSpotify({ code, albumName, setSelectedAlbum, setToken }) {
+function SearchSpotify({ code, albumName }) {
   const accessToken = useAuth(code);
   const [player, setPlayer] = useState(undefined);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
-  console.log(searchResults);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -57,7 +55,7 @@ function SearchSpotify({ code, albumName, setSelectedAlbum, setToken }) {
           className="main-wrapper"
           style={{ display: "flex", gap: "0.5rem" }}
         >
-          <form>
+          {/* <form>
             <label>
               Search:
               <input
@@ -67,7 +65,7 @@ function SearchSpotify({ code, albumName, setSelectedAlbum, setToken }) {
               />
             </label>
           </form>
-          <button onClick={() => setSearch("")}>Clear</button>
+          <button onClick={() => setSearch("")}>Clear</button> */}
         </div>
         {/* <div>
           {searchResults.map((album) => (

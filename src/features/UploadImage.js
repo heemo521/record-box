@@ -27,7 +27,6 @@ function UploadImage({ setAlbumName }) {
         .then((resp) => resp.json())
         .then((data) => {
           setUrl(data.url);
-          console.log(data.url);
         })
         .catch((err) => console.log(err));
     };
@@ -45,7 +44,6 @@ function UploadImage({ setAlbumName }) {
         url,
       })
         .then((res) => {
-          console.log(res.data);
           setAlbumData(res.data);
           setAlbumName(res.data);
         })
@@ -65,6 +63,7 @@ function UploadImage({ setAlbumName }) {
             accept="image/*"
             id="icon-button-file"
             type="file"
+            style={{ display: "none" }}
             capture="environment"
             onChange={(e) => setImage(e.target.files[0])}
           />

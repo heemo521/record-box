@@ -6,25 +6,22 @@ import SearchSpotify from "./features/SearchSpotify";
 import MusicPlayer from "./features/MusicPlayer";
 import store from "./features/app/store";
 import { Provider } from "react-redux";
+import Header from "./features/Header";
 
 const code = new URLSearchParams(window.location.search).get("code");
 
 const MainComponent = ({ code }) => {
   const [token, setToken] = useState("");
   const [records, setRecords] = useState([]);
-  const [selectedAlbum, setSelectedAlbum] = useState({});
+
   const [albumName, setAlbumName] = useState("");
   return (
     <>
+      <Header />
       <RecordCollection records={records} />
       <UploadImage setAlbumName={setAlbumName} />
-      <SearchSpotify
-        albumName={albumName}
-        code={code}
-        setToken={setToken}
-        setSelectedAlbum={setSelectedAlbum}
-      />
-      <MusicPlayer selectedAlbum={selectedAlbum} token={token} />
+      <SearchSpotify albumName={albumName} code={code} setToken={setToken} />
+      <MusicPlayer token={token} />
     </>
   );
 };
