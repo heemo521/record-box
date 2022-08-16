@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: "",
   album: "",
+  play: false,
 };
 
 export const mainSlice = createSlice({
@@ -15,8 +16,11 @@ export const mainSlice = createSlice({
     selectAlbum: (state, action) => {
       state.album = action.payload;
     },
+    setPlay: (state, action) => {
+      state.play = action.payload;
+    },
   },
 });
 
-export const { setToken, selectAlbum } = mainSlice.actions;
+export const { setToken, selectAlbum, setPlay } = mainSlice.actions;
 export default mainSlice.reducer;

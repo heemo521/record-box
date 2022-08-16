@@ -69,11 +69,11 @@ function SearchSpotify({ code, albumName, setSelectedAlbum, setToken }) {
           </form>
           <button onClick={() => setSearch("")}>Clear</button>
         </div>
-        <div>
+        {/* <div>
           {searchResults.map((album) => (
             <SearchListItem key={album.uri} album={album} />
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   );
