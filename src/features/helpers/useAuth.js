@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { setToken } from "../app/mainSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
-  const [count, setCount] = useState(0);
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log(count);
-    setCount((count) => count + 1);
     axios
       .post("http://localhost:8000/auth/login", {
         code,
@@ -17,6 +16,7 @@ export default function useAuth(code) {
       .then((res) => {
         console.log("login", res.data);
         setAccessToken(res.data.accessToken);
+        dispatch(setToken(res.data.accessToken));
         setRefreshToken(res.data.refreshToken);
         setExpiresIn(res.data.expiresIn);
         window.history.pushState({}, null, "/");
@@ -25,7 +25,7 @@ export default function useAuth(code) {
         console.log("login error" + err);
         // window.location = "/";
       });
-  }, [code]);
+  }, [code, dispatch]);
 
   useEffect(() => {
     if (!refreshToken || !expiresIn) return;
@@ -38,6 +38,7 @@ export default function useAuth(code) {
         .then((res) => {
           console.log("refresh", res.data);
           setAccessToken(res.data.accessToken);
+          dispatch(setToken(res.data.accessToken));
           setExpiresIn(res.data.expiresIn);
         })
         .catch((err) => {
@@ -47,7 +48,7 @@ export default function useAuth(code) {
     }, (expiresIn - 60) * 1000);
 
     return () => clearInterval(interval);
-  }, [refreshToken, expiresIn]);
+  }, [refreshToken, expiresIn, dispatch]);
 
   return accessToken;
 }

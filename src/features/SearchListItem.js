@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function SearchListItem({ album, selectAlbum }) {
+import { selectAlbum } from "./app/mainSlice";
+import { useDispatch } from "react-redux";
+function SearchListItem({ album }) {
+  const dispatch = useDispatch();
+
   const handleMusicPlay = () => {
-    selectAlbum(album);
+    dispatch(selectAlbum(album));
   };
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex" }} onClick={handleMusicPlay}>
       <img
         src={album.albumUrl}
         alt={album.title}

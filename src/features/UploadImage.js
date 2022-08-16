@@ -5,7 +5,10 @@ import { Grid, Box, Button } from "@mui/material";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ImageDisplay from "./ImageDisplay";
 
+import { useDispatch, useSelector } from "react-redux";
+
 function UploadImage({ setAlbumName }) {
+  const dispatch = useDispatch();
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
   const [albumData, setAlbumData] = useState(null);
@@ -76,7 +79,7 @@ function UploadImage({ setAlbumName }) {
           </label>
         </Grid>
         <div>
-          <p>Album Best Guess: {albumData}</p>
+          {/* <p>Album Best Guess: {albumData}</p> */}
           {url && <ImageDisplay url={url} />}
         </div>
       </Grid>

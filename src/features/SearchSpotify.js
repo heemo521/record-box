@@ -7,7 +7,7 @@ const spotifyApi = new SpotifyWebApi({
   clientId: "e5c7befa7a5b4f209ae1986b51868db3",
 });
 
-function SearchSpotify({ code, albumName }) {
+function SearchSpotify({ code, albumName, setSelectedAlbum, setToken }) {
   const accessToken = useAuth(code);
   const [player, setPlayer] = useState(undefined);
   const [search, setSearch] = useState("");
