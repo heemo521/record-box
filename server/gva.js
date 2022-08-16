@@ -1,4 +1,5 @@
 const vision = require("@google-cloud/vision");
+// require("dotenv").config();
 const credentials = require("./CONFIG.js");
 
 const CONFIG = {
