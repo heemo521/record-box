@@ -57,7 +57,7 @@ function SearchSpotify({ accessToken, albumName, SpotifyApi }) {
     return () => {
       cancel = true;
     };
-  }, [accessToken, search]);
+  }, [accessToken, search, SpotifyApi]);
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
       <form>
@@ -89,11 +89,11 @@ function SearchSpotify({ accessToken, albumName, SpotifyApi }) {
         </Box>
       </form>
 
-      <div>
+      <Box sx={{ overflow: "scroll" }}>
         {searchResults.map((album) => (
           <SearchListItem key={album.uri} album={album} />
         ))}
-      </div>
+      </Box>
     </Box>
     // );
     //   return (

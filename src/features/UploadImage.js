@@ -5,6 +5,7 @@ import { Box, Typography } from "@mui/material";
 
 import ImageDisplay from "./ImageDisplay";
 import { useSelector, useDispatch } from "react-redux";
+import { setPlay } from "./app/mainSlice";
 
 function UploadImage({ setAlbumName }) {
   const dispatch = useDispatch();

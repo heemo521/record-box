@@ -10,10 +10,10 @@ function RecordPlayer() {
   const play = useSelector((state) => state.main.play);
 
   useEffect(() => {
-    setPlay(true);
-  }, [album]);
+    dispatch(setPlay(true));
+  }, [album, dispatch]);
 
-  if (!token) return null;
+  if (!token || !album) return null;
 
   return (
     <SpotifyPlayer
