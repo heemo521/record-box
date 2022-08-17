@@ -39,7 +39,7 @@ function UploadImage({ setAlbumName }) {
       const regex = /\/([a-zA-Z0-9]*)\.(jpg|png|gif)/;
       const img_id = url.match(regex)[1];
 
-      ax.post("http://localhost:8000/api/album/gva", {
+      ax.post("http://192.168.0.113:8000/api/album/gva", {
         img_id,
         url,
       })

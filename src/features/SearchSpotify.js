@@ -72,13 +72,13 @@ function SearchSpotify({ accessToken, albumName, SpotifyApi }) {
           }}
         >
           <Controller
-            name={"textValue"}
+            name={"search"}
             control={control}
             render={() => (
               <TextField
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
-                label={"Text Value"}
+                label={"Search Spotify"}
                 sx={{ flex: 1 }}
               />
             )}
