@@ -4,10 +4,10 @@ import React, { useState, useEffect } from "react";
 import SearchListItem from "./SearchListItem";
 import { TextField, Button, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { setToken } from "./app/mainSlice";
+import { setPlay, setToken, selectAlbum } from "./app/mainSlice";
 import { Controller, useForm } from "react-hook-form";
 
-function SearchSpotify({ accessToken, albumName, SpotifyApi }) {
+function SearchSpotify({ accessToken, albumName, SpotifyApi, setAlbumName }) {
   const dispatch = useDispatch();
   const { handleSubmit, reset, control } = useForm();
   // const onSubmit = (data) => console.log(data);
@@ -34,7 +34,8 @@ function SearchSpotify({ accessToken, albumName, SpotifyApi }) {
   useEffect(() => {
     if (!albumName) return;
     setSearch(albumName);
-  }, [albumName]);
+    setAlbumName("");
+  }, [albumName, setAlbumName]);
 
   useEffect(() => {
     if (!accessToken || !search) return;
@@ -42,16 +43,21 @@ function SearchSpotify({ accessToken, albumName, SpotifyApi }) {
     SpotifyApi.searchTracks(search)
       .then((res) => {
         if (cancel) return;
-        setSearchResults(
-          res.body.tracks.items.map((track) => {
-            return {
-              artist: track.artists[0].name,
-              title: track.name,
-              uri: track.uri,
-              albumUrl: track.album.images[1].url,
-            };
-          })
-        );
+        const tracks = res.body.tracks.items.map((track) => {
+          return {
+            artist: track.artists[0].name,
+            title: track.name,
+            uri: track.uri,
+            albumUrl: track.album.images[1].url,
+          };
+        });
+        setSearchResults(tracks);
+        if (albumName) {
+          dispatch(selectAlbum(tracks[0]));
+          dispatch(setPlay(true));
+          setAlbumName("");
+          clear();
+        }
       })
       .catch((err) => console.log(err));
     return () => {

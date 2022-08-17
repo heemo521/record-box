@@ -7,7 +7,7 @@ import ImageDisplay from "./ImageDisplay";
 import { useSelector, useDispatch } from "react-redux";
 import { setPlay } from "./app/mainSlice";
 
-function UploadImage({ setAlbumName }) {
+function UploadImage({ setAlbumName, accessToken }) {
   const dispatch = useDispatch();
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");

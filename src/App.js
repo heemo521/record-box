@@ -7,17 +7,20 @@ import SearchSpotify from "./features/SearchSpotify";
 import BottomTab from "./features/BottomTab";
 import { Routes, Route } from "react-router-dom";
 import { Container, Box } from "@mui/material";
-import SpotifyWebApi from "spotify-web-api-node";
-import useAuth from "./features/hooks/useAuth";
+// import SpotifyWebApi from "spotify-web-api-node";
+import { SpotifyApi } from "./features/SpotifyApi";
+import useAuth from "./features/hoooks/useAuth";
+
 export const code = new URLSearchParams(window.location.search).get("code");
 
 const MainComponent = ({ code }) => {
   const [records, setRecords] = useState([]);
   const [albumName, setAlbumName] = useState("");
   const accessToken = useAuth(code);
-  const SpotifyApi = new SpotifyWebApi({
-    clientId: "e5c7befa7a5b4f209ae1986b51868db3",
-  });
+  // const SpotifyApi = new SpotifyWebApi({
+  //   clientId: "e5c7befa7a5b4f209ae1986b51868db3",
+  // });
+
   return (
     <>
       <Box
@@ -28,20 +31,33 @@ const MainComponent = ({ code }) => {
         height="100%"
       >
         <Routes>
-          <Route path="/" element={<RecordCollection records={records} />} />
+          <Route
+            path="/"
+            element={
+              <RecordCollection records={records} accessToken={accessToken} />
+            }
+          />
           <Route
             path="/home"
-            element={<RecordCollection records={records} />}
+            element={
+              <RecordCollection records={records} accessToken={accessToken} />
+            }
           />
           <Route
             path="/image"
-            element={<UploadImage setAlbumName={setAlbumName} />}
+            element={
+              <UploadImage
+                setAlbumName={setAlbumName}
+                accessToken={accessToken}
+              />
+            }
           />
           <Route
             path="/search"
             element={
               <SearchSpotify
                 albumName={albumName}
+                setAlbumName={setAlbumName}
                 SpotifyApi={SpotifyApi}
                 accessToken={accessToken}
               />

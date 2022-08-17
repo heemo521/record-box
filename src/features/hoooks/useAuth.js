@@ -12,7 +12,7 @@ export default function useAuth(code) {
   useEffect(() => {
     if (token) return;
     axios
-      .post("http://192.168.0.113:8000/auth/login", {
+      .post("http://localhost:8000/auth/login", {
         code,
       })
       .then((res) => {
@@ -34,7 +34,7 @@ export default function useAuth(code) {
     console.log("refreshToken" + refreshToken);
     const interval = setInterval(() => {
       axios
-        .post("http://192.168.0.113:8000/auth/refresh", {
+        .post("http://localhost:8000/auth/refresh", {
           refreshToken,
         })
         .then((res) => {
