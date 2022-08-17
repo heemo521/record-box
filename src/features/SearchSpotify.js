@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
-import useAuth from "./hooks/useAuth";
-import SpotifyWebApi from "spotify-web-api-node";
+
+// import { SpotifyApi } from "./SpotifyApi";
 import SearchListItem from "./SearchListItem";
 import { TextField, Button, Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "./app/mainSlice";
 import { Controller, useForm } from "react-hook-form";
 
-const spotifyApi = new SpotifyWebApi({
-  clientId: "e5c7befa7a5b4f209ae1986b51868db3",
-});
-
-function SearchSpotify({ code, albumName }) {
+function SearchSpotify({ accessToken, albumName, SpotifyApi }) {
   const dispatch = useDispatch();
   const { handleSubmit, reset, control } = useForm();
-  const onSubmit = (data) => console.log(data);
-  const accessToken = useAuth(code);
+  // const onSubmit = (data) => console.log(data);
+
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+
+  const clear = () => {
+    setSearch("");
+    setSearchResults([]);
+  };
 
   useEffect(() => {
     if (!accessToken) {
@@ -27,8 +28,8 @@ function SearchSpotify({ code, albumName }) {
 
   useEffect(() => {
     if (!accessToken) return;
-    spotifyApi.setAccessToken(accessToken);
-  }, [accessToken]);
+    SpotifyApi.setAccessToken(accessToken);
+  }, []);
 
   useEffect(() => {
     if (!albumName) return;
@@ -36,10 +37,9 @@ function SearchSpotify({ code, albumName }) {
   }, [albumName]);
 
   useEffect(() => {
-    if (!accessToken) return;
+    if (!accessToken || !search) return;
     let cancel = false;
-    spotifyApi
-      .searchTracks(search)
+    SpotifyApi.searchTracks(search)
       .then((res) => {
         if (cancel) return;
         setSearchResults(
@@ -60,7 +60,7 @@ function SearchSpotify({ code, albumName }) {
   }, [accessToken, search]);
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <Box
           sx={{
             display: "flex",
@@ -74,7 +74,7 @@ function SearchSpotify({ code, albumName }) {
           <Controller
             name={"textValue"}
             control={control}
-            render={({ field: { onChange, value } }) => (
+            render={() => (
               <TextField
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
@@ -83,7 +83,7 @@ function SearchSpotify({ code, albumName }) {
               />
             )}
           />
-          <Button onClick={() => setSearch("")} variant={"outlined"}>
+          <Button onClick={() => clear()} variant={"outlined"}>
             Reset
           </Button>
         </Box>

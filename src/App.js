@@ -7,12 +7,17 @@ import SearchSpotify from "./features/SearchSpotify";
 import BottomTab from "./features/BottomTab";
 import { Routes, Route } from "react-router-dom";
 import { Container, Box } from "@mui/material";
-
-const code = new URLSearchParams(window.location.search).get("code");
+import SpotifyWebApi from "spotify-web-api-node";
+import useAuth from "./features/hooks/useAuth";
+export const code = new URLSearchParams(window.location.search).get("code");
 
 const MainComponent = ({ code }) => {
   const [records, setRecords] = useState([]);
   const [albumName, setAlbumName] = useState("");
+  const accessToken = useAuth(code);
+  const SpotifyApi = new SpotifyWebApi({
+    clientId: "e5c7befa7a5b4f209ae1986b51868db3",
+  });
   return (
     <>
       <Box
@@ -34,7 +39,13 @@ const MainComponent = ({ code }) => {
           />
           <Route
             path="/search"
-            element={<SearchSpotify albumName={albumName} code={code} />}
+            element={
+              <SearchSpotify
+                albumName={albumName}
+                SpotifyApi={SpotifyApi}
+                accessToken={accessToken}
+              />
+            }
           />
         </Routes>
       </Box>
