@@ -5,12 +5,14 @@ import {
   BottomNavigation,
   BottomNavigationAction,
 } from "@mui/material";
-import RestoreIcon from "@mui/icons-material/Restore";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ArchiveIcon from "@mui/icons-material/Archive";
+import AlbumOutlinedIcon from "@mui/icons-material/AlbumOutlined";
 import { setTab } from "./app/mainSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import RecordPlayer from "./RecordPlayer";
 import { Container } from "@mui/material";
 
 export default function BottomTab() {
@@ -19,9 +21,18 @@ export default function BottomTab() {
   return (
     <Box sx={{ pb: 7 }}>
       <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          bgcolor: "rgba(0, 0, 0, 0)",
+        }}
         elevation={3}
       >
+        <Box sx={{ marginBottom: "12px" }}>
+          <RecordPlayer />
+        </Box>
         <BottomNavigation
           showLabels
           value={tab}
@@ -33,19 +44,19 @@ export default function BottomTab() {
             component={Link}
             to="/home"
             label="Home"
-            icon={<RestoreIcon />}
+            icon={<HomeOutlinedIcon />}
           />
           <BottomNavigationAction
             component={Link}
             to="/image"
-            label="Record Player"
-            icon={<FavoriteIcon />}
+            label="Image Search"
+            icon={<AlbumOutlinedIcon />}
           />
           <BottomNavigationAction
             component={Link}
             to="/search"
             label="Search"
-            icon={<ArchiveIcon />}
+            icon={<SearchOutlinedIcon />}
           />
         </BottomNavigation>
       </Paper>

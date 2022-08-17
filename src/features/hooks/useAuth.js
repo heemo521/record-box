@@ -4,11 +4,13 @@ import { setToken } from "../app/mainSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function useAuth(code) {
+  const token = useSelector((state) => state.main.token);
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
+    if (token) return;
     axios
       .post("http://localhost:8000/auth/login", {
         code,
@@ -25,7 +27,7 @@ export default function useAuth(code) {
         console.log("login error" + err);
         // window.location = "/";
       });
-  }, [code, dispatch]);
+  }, [code, dispatch, token]);
 
   useEffect(() => {
     if (!refreshToken || !expiresIn) return;

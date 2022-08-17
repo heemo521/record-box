@@ -1,12 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import ax from "axios";
-import { Grid, Box, Button } from "@mui/material";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import ImageDisplay from "./ImageDisplay";
+import { Box, Typography } from "@mui/material";
 
-import { useDispatch, useSelector } from "react-redux";
-import LoadingSpinner from "./UI/LoadingSpinner";
+import ImageDisplay from "./ImageDisplay";
+import { useSelector, useDispatch } from "react-redux";
 
 function UploadImage({ setAlbumName }) {
   const dispatch = useDispatch();
@@ -56,35 +54,24 @@ function UploadImage({ setAlbumName }) {
   }, [url]);
 
   return (
-    <div>
-      <Grid container>
-        <Grid item xs={12}>
-          <h5>Capture your image</h5>
-          <input
-            accept="image/*"
-            id="icon-button-file"
-            type="file"
-            style={{ display: "none" }}
-            capture="environment"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-          <label htmlFor="icon-button-file">
-            <Button
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-            >
-              <CameraAltIcon />
-            </Button>
-          </label>
-        </Grid>
-        <div>
-          <p>Album Best Guess: {albumData}</p>
-          {!url && <LoadingSpinner />}
-          {url && <ImageDisplay url={url} />}
-        </div>
-      </Grid>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div>
+        <ImageDisplay
+          url={url}
+          albumData={albumData}
+          setImage={setImage}
+          image={image}
+          setUrl={setUrl}
+        />
+      </div>
+    </Box>
   );
 }
 export default UploadImage;

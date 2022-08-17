@@ -5,6 +5,8 @@ const initialState = {
   album: "",
   play: false,
   tab: 0,
+  image: "",
+  url: "",
 };
 
 export const mainSlice = createSlice({
@@ -23,8 +25,15 @@ export const mainSlice = createSlice({
     setTab: (state, action) => {
       state.tab = action.payload;
     },
+    setImage: (state, action) => {
+      state.image = action.payload;
+    },
+    setUrl: (state, action) => {
+      state.url = action.payload;
+    },
   },
 });
 
-export const { setToken, selectAlbum, setPlay, setTab } = mainSlice.actions;
+export const { setToken, selectAlbum, setPlay, setTab, setImage, setUrl } =
+  mainSlice.actions;
 export default mainSlice.reducer;
