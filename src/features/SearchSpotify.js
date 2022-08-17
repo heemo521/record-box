@@ -55,7 +55,7 @@ function SearchSpotify({ code, albumName }) {
           className="main-wrapper"
           style={{ display: "flex", gap: "0.5rem" }}
         >
-          {/* <form>
+          <form>
             <label>
               Search:
               <input
@@ -65,13 +65,13 @@ function SearchSpotify({ code, albumName }) {
               />
             </label>
           </form>
-          <button onClick={() => setSearch("")}>Clear</button> */}
+          <button onClick={() => setSearch("")}>Clear</button>
         </div>
-        {/* <div>
+        <div>
           {searchResults.map((album) => (
             <SearchListItem key={album.uri} album={album} />
           ))}
-        </div> */}
+        </div>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ImageDisplay from "./ImageDisplay";
 
 import { useDispatch, useSelector } from "react-redux";
+import LoadingSpinner from "./UI/LoadingSpinner";
 
 function UploadImage({ setAlbumName }) {
   const dispatch = useDispatch();
@@ -78,7 +79,8 @@ function UploadImage({ setAlbumName }) {
           </label>
         </Grid>
         <div>
-          {/* <p>Album Best Guess: {albumData}</p> */}
+          <p>Album Best Guess: {albumData}</p>
+          {!url && <LoadingSpinner />}
           {url && <ImageDisplay url={url} />}
         </div>
       </Grid>
