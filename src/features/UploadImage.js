@@ -69,6 +69,7 @@ function UploadImage({ setAlbumName }) {
           setImage={setImage}
           image={image}
           setUrl={setUrl}
+          setAlbumData={setAlbumData}
         />
       </div>
     </Box>

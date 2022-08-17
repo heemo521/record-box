@@ -16,6 +16,7 @@ export default function ImageDisplay({
   image,
   url,
   setUrl,
+  setAlbumData,
 }) {
   const dispatch = useDispatch();
   // const image = useSelector((state) => state.main.image);
@@ -27,6 +28,7 @@ export default function ImageDisplay({
   const handleClear = () => {
     setImage("");
     setUrl("");
+    setAlbumData(null);
   };
 
   return (
@@ -84,12 +86,14 @@ export default function ImageDisplay({
         )}
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {albumData ? albumData.split(" ")[0] : "Artist"}
+            {albumData ? "Best Guess" : image ? "Searching..." : "Best Guess"}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {albumData
-              ? albumData?.split(" ").slice(1).join(" ").toUpperCase()
-              : "Album"}
+              ? albumData?.toUpperCase()
+              : image
+              ? "..."
+              : "Artist & Album"}
           </Typography>
         </CardContent>
       </CardActionArea>

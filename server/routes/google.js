@@ -25,11 +25,11 @@ googleRouter.post("/album/gva", (req, res) => {
     const bestGuess = result[0].label;
 
     const regex = /(album|cover|vinyl|cd|lp)/g;
-    const incorrectImage = !regex.test(bestGuess);
+    // const incorrectImage = !regex.test(bestGuess);
 
-    if (incorrectImage) {
-      return res.status(404).send("Not an album");
-    }
+    // if (incorrectImage) {
+    //   return res.status(404).send("Not an album");
+    // }
 
     const searchWord = bestGuess.replace(regex, "");
 
