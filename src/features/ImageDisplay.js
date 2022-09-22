@@ -86,7 +86,7 @@ export default function ImageDisplay({
         )}
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {albumData ? "Best Guess" : image ? "Searching..." : "Best Guess"}
+            {albumData ? "Best Guess:" : image ? "Searching..." : "Best Guess:"}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {albumData

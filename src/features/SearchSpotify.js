@@ -75,6 +75,7 @@ function SearchSpotify({ accessToken, albumName, SpotifyApi, setAlbumName }) {
             width: "100%",
             gap: "1rem",
             margin: "1rem 0",
+            position: "relative",
           }}
         >
           <Controller

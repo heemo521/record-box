@@ -1,16 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  token: "",
-  album: "",
-  play: false,
-  tab: 0,
-  image: "",
-  url: "",
-};
+const initialState = {};
 
 export const mainSlice = createSlice({
-  name: "main",
+  name: 'main',
   initialState,
   reducers: {
     setToken: (state, action) => {

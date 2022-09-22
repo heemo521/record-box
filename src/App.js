@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import RecordCollection from "./features/RecordCollection";
-import UploadImage from "./features/UploadImage";
-import Login from "./features/Login";
-import SearchSpotify from "./features/SearchSpotify";
+import React, { useState } from 'react';
+import RecordCollection from './features/RecordCollection';
+import UploadImage from './features/UploadImage';
+import Login from './features/Login';
+import SearchSpotify from './features/SearchSpotify';
 
-import BottomTab from "./features/BottomTab";
-import { Routes, Route } from "react-router-dom";
-import { Container, Box } from "@mui/material";
+import BottomTab from './features/BottomTab';
+import { Routes, Route } from 'react-router-dom';
+import { Container, Box } from '@mui/material';
 // import SpotifyWebApi from "spotify-web-api-node";
-import { SpotifyApi } from "./features/SpotifyApi";
-import useAuth from "./features/hoooks/useAuth";
+import { SpotifyApi } from './features/SpotifyApi';
+import useAuth from './features/hooks/useAuth';
 
-export const code = new URLSearchParams(window.location.search).get("code");
+export const code = new URLSearchParams(window.location.search).get('code');
 
 const MainComponent = ({ code }) => {
   const [records, setRecords] = useState([]);
-  const [albumName, setAlbumName] = useState("");
+  const [albumName, setAlbumName] = useState('');
   const accessToken = useAuth(code);
   // const SpotifyApi = new SpotifyWebApi({
   //   clientId: "e5c7befa7a5b4f209ae1986b51868db3",
@@ -79,10 +79,10 @@ function App() {
 }
 
 const AppStyles = {
-  position: "relative",
-  width: "100%",
-  margin: "0 auto",
-  height: "100vh",
+  position: 'relative',
+  width: '100%',
+  margin: '0 auto',
+  height: '100vh',
 };
 
 export default App;
