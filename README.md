@@ -6,7 +6,7 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/ph-castle/apples2oranges">
+  <a href="https://github.com/heemo521/record-box">
     <!-- ******************************************************************** -->
     <img src="https://i.imgur.com/MD2iUYf.gif" alt="Logo">
   </a>
@@ -15,14 +15,6 @@
 
   <p align="center">
     Record Box is a music player that allows the user to connect to their Spotify premium account to play their music on the browser. It has added functionality of image search using Google API. The idea is that this application can access mobile camera and take a picture of an album. It can accurately analyze the photo and make an automatic search to the Spotify API. Now you can walk in to your favorite record shop and listen to these albums just by taking a photo! Enjoy!
-    
-    <br />
-    <a href="https://www.cardsagainsthumanity.com/about">Learn more about the game!!!</a>
-    <br />
-    <br />
-   ·
-    <a href="https://github.com/ph-castle/apples2oranges">View Demo(DEMO LINK HERE!!!!)</a>
-
   </p>
 </div>
 
