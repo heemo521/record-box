@@ -19,7 +19,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
  <p align="start">
-  The inspiration behind this project is the record shop. The problem is that it's not as easy to listen to music in a record player because they are records. This application can access mobile camera and take pictures of these album. It will accurately analyze the photo and make an automatic search to the Spotify API, then allow you to play the msuic. Now you can walk in to your favorite record shop and listen to these albums just by taking a photo! Enjoy!
+  The inspiration behind this project is the record shop. The problem is that it's not as easy to listen to music in a record shop because of the required setup to play records. This application can access the mobile device's camera and take pictures of an album. Google's Vision API will quite accurately analyze the photo and make an automatic search to the Spotify API, then you are allow to play the music. Now you can walk in to your favorite record shop and listen to these albums just by taking a photo! Enjoy!
 </p>
 
 ![Imgur](https://i.imgur.com/GqU4EX2.jpg)
