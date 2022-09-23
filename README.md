@@ -18,11 +18,11 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-![Imgur](https://i.imgur.com/GqU4EX2.jpg)
  <p align="center">
-  The idea is that this application can access mobile camera and take a picture of an album. It can accurately analyze the photo and make an automatic search to the Spotify API. Now you can walk in to your favorite record shop and listen to these albums just by taking a photo! Enjoy!
+  The inspiration behind this project is the record shop. The problem is that it's not as easy to listen to music in a record player because they are records. This application can access mobile camera and take pictures of these album. It will accurately analyze the photo and make an automatic search to the Spotify API, then allow you to play the msuic. Now you can walk in to your favorite record shop and listen to these albums just by taking a photo! Enjoy!
 </p>
+![Imgur](https://i.imgur.com/GqU4EX2.jpg)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
