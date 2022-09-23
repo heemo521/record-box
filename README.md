@@ -41,7 +41,7 @@ Apples to Oranges is a multiplayer card matching game with live chat, music, and
 * ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 * ![Material UI](https://img.shields.io/badge/Material%20UI-MUI-blue)
 * ![Spotify](https://img.shields.io/badge/Spotify-1ED760?style=for-the-badge&logo=spotify&logoColor=white)
-* ![GoogleAPI](https://img.shields.io/badge/Google-1ED760?style=for-the-badge&logo=google&logoColor=white)
+* ![GoogleAPI](https://img.shields.io/badge/Google-000000?style=for-the-badge&logo=google&logoColor=black)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
