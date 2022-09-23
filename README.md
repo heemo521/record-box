@@ -9,7 +9,7 @@
     <img src="https://i.imgur.com/MD2iUYf.gif" alt="Logo">
   </a>
 
-  <h3 align="center">Record Box</h3>
+  <h3 align="center">Record Box (music player)</h3>
 
   <p align="center">
     Record Box is a music player that allows the user to connect to their Spotify premium account to play their music on the browser. It has added functionality of image search using Google API. 
